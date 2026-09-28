@@ -226,16 +226,3 @@ Docker Compose File
         v
     PNG Export
 ```
-
-### Out of Scope
-
-The following features are outside the scope of the project:
-
-* Kubernetes support
-* Docker Swarm support
-* Starting, stopping or restarting containers
-* User login or authentication
-* Database storage
-* Merging multiple Compose files
-* `.env` file processing
-* Advanced Docker management
