@@ -42,6 +42,10 @@
                     Analyze Compose File
                 </button>
 
+                <button id="resetButton" class="reset-button">
+                    Reset
+                </button>
+
             </div>
 
             <p id="fileName"></p>
@@ -56,12 +60,22 @@
             <div class="graph-section">
 
                 <div class="section-header">
+
                     <h2>Service Topology</h2>
 
-                    <span id="serviceCount">
-                        No services loaded
-                    </span>
+                    <div>
+                        <span id="serviceCount">
+                            No services loaded
+                        </span>
+
+                        <span id="dependencyCount"></span>
+                    </div>
+
                 </div>
+
+                <p class="graph-help">
+                    Click a service node to view its details.
+                </p>
 
                 <div id="cy"></div>
 

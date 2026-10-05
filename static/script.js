@@ -4,17 +4,25 @@ let cy = null;
 
 const fileInput = document.getElementById("composeFile");
 const analyzeButton = document.getElementById("analyzeButton");
+const resetButton = document.getElementById("resetButton");
 const errorMessage = document.getElementById("errorMessage");
 const fileName = document.getElementById("fileName");
 const serviceCount = document.getElementById("serviceCount");
+const dependencyCount = document.getElementById("dependencyCount");
 const details = document.getElementById("details");
 
 
 fileInput.addEventListener("change", function () {
 
     if (fileInput.files.length > 0) {
+
         fileName.textContent =
             "Selected file: " + fileInput.files[0].name;
+
+    } else {
+
+        fileName.textContent = "";
+
     }
 
 });
@@ -25,6 +33,7 @@ analyzeButton.addEventListener("click", async function () {
     errorMessage.textContent = "";
 
     if (fileInput.files.length === 0) {
+
         errorMessage.textContent =
             "Please select a Docker Compose file.";
 
@@ -60,8 +69,16 @@ analyzeButton.addEventListener("click", async function () {
 
         displayGraph(data.graph);
 
+
+        const serviceTotal = Object.keys(services).length;
+        const dependencyTotal = data.graph.edges.length;
+
+
         serviceCount.textContent =
-            Object.keys(services).length + " services";
+            "Services: " + serviceTotal;
+
+        dependencyCount.textContent =
+            "Dependencies: " + dependencyTotal;
 
     }
     catch (error) {
@@ -108,6 +125,11 @@ function displayGraph(graph) {
         });
 
     });
+
+
+    if (cy) {
+        cy.destroy();
+    }
 
 
     cy = cytoscape({
@@ -238,3 +260,34 @@ function createList(items) {
         </ul>
     `;
 }
+
+
+resetButton.addEventListener("click", function () {
+
+    services = {};
+
+
+    if (cy) {
+        cy.destroy();
+        cy = null;
+    }
+
+
+    fileInput.value = "";
+    fileName.textContent = "";
+    errorMessage.textContent = "";
+
+
+    serviceCount.textContent =
+        "No services loaded";
+
+    dependencyCount.textContent = "";
+
+
+    details.innerHTML = `
+        <p class="placeholder">
+            Click a service node to view its details.
+        </p>
+    `;
+
+});

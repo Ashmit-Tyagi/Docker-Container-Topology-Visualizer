@@ -56,12 +56,30 @@ button:hover {
     background: #1d4ed8;
 }
 
+button:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+.reset-button {
+    background: #6b7280;
+}
+
+.reset-button:hover {
+    background: #4b5563;
+}
+
 #errorMessage {
     margin-top: 12px;
 }
 
 .error {
     color: #dc2626;
+}
+
+#fileName {
+    margin-top: 12px;
+    color: #374151;
 }
 
 .workspace {
@@ -93,9 +111,20 @@ button:hover {
     margin: 0;
 }
 
-#serviceCount {
+#serviceCount,
+#dependencyCount {
     color: #6b7280;
     font-size: 14px;
+}
+
+#dependencyCount {
+    margin-left: 10px;
+}
+
+.graph-help {
+    margin: 10px 20px;
+    color: #6b7280;
+    font-size: 13px;
 }
 
 #cy {
