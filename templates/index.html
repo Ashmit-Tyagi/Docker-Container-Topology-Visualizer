@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Docker Container Topology Visualizer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Docker Container Topology Visualizer</h1>
+        <p>
+            Upload a Docker Compose file to visualize service dependencies.
+        </p>
+    </header>
+
+    <main>
+
+        <section class="upload-section">
+
+            <h2>Upload Docker Compose File</h2>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="composeFile"
+                    accept=".yml,.yaml"
+                >
+
+                <button id="analyzeButton">
+                    Analyze Compose File
+                </button>
+
+            </div>
+
+            <p id="fileName"></p>
+
+            <div id="errorMessage" class="error"></div>
+
+        </section>
+
+
+        <section class="workspace">
+
+            <div class="graph-section">
+
+                <div class="section-header">
+                    <h2>Service Topology</h2>
+
+                    <span id="serviceCount">
+                        No services loaded
+                    </span>
+                </div>
+
+                <div id="cy"></div>
+
+            </div>
+
+
+            <aside class="details-panel">
+
+                <h2>Service Details</h2>
+
+                <div id="details">
+
+                    <p class="placeholder">
+                        Click a service node to view its details.
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
